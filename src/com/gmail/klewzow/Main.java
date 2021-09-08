@@ -1,6 +1,8 @@
-package com.gmail.klewzow;
+ package com.gmail.klewzow;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -12,12 +14,14 @@ public class Main {
 		Cat c = new Cat(4, 1, "Kuzia", "Black");
 		Cat d = new Cat(1, 7, "Luska", "Red");
 
-		Cat[] arr = new Cat[] { a, e, b, d, c };
+		List<Cat> cat = new ArrayList<>(List.of(a, e, b, d, c));
 
-		Cat[] resultArray = Arrays.stream(arr).filter(el -> el.getWeigth() > 3)
-				.sorted((el1, el2) -> el1.getName().compareTo(el2.getName())).toArray(Cat[]::new);
-		Arrays.stream(resultArray).forEach(System.out::println);
+		List<Cat> resultList = cat.stream().filter(el -> el.getWeigth() > 3)
+				.sorted((el1, el2) -> el1.getName().compareTo(el2.getName())).collect(Collectors.toList());
+
+		resultList.stream().forEach(System.out::println);
 
 	}
 
 }
+
